@@ -62,7 +62,7 @@ namespace HairSalon
 
 
 		[Fact]
-    public void Test_Update_UpdatesCategoryInDatabase()
+    public void Test_Update_UpdatesClientInDatabase()
     {
       string name = "Joe";
       Client testClient = new Client(name, 1);
@@ -77,7 +77,7 @@ namespace HairSalon
     }
 
 		[Fact]
-    public void Test_Delete_DeletesCategoryFromDatabase()
+    public void Test_Delete_DeletesClientFromDatabase()
     {
 
       Client testClient1 = new Client("Paul", 1);

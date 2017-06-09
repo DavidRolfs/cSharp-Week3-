@@ -8,7 +8,10 @@
 
 .delete:hover{
 	color: red;
+}
 
+.stylist{
+	font-size: 18px;
 }
 
 ul{
