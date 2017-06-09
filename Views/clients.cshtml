@@ -1,3 +1,8 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+
 @if (@Model["Client"].Count == 0)
 {
   <p>No Clients have been added yet!</p>
@@ -8,17 +13,10 @@ else
     @foreach (var client in @Model["Client"])
     {
       <li>
-      <a href="/client/@client.GetId()">@client.GetName()</a>
-      <a href="/client/edit/@client.GetId()">Edit</a>
-      <a href="/client/delete/@client.GetId()">Delete</a></li>
+      <a class = "name" href="/client/@client.GetId()">@client.GetName()</a> |
+      <a class = "edit" href="/client/edit/@client.GetId()">Edit</a> |
+      <a class = "delete" href="/client/delete/@client.GetId()">Delete</a></li>
       </li>
     }
   </ol>
 }
-
-
-<a href="/stylists/all">View all Stylists</a>
-<br>
-<a href="/stylists/add">Add Stylists</a>
-<br>
-<a href="/clients/add">Add client</a>
