@@ -28,7 +28,7 @@ namespace HairSalon
 			  return (idEquality && nameEquality);
 		  }
 	  }
-		// GETTERS------
+		// GETTERS
     public int GetId()
     {
       return _id;
@@ -39,7 +39,7 @@ namespace HairSalon
       return _name;
     }
 
-// SETTERS------
+// SETTERS
     public void SetName(string name)
     {
       _name = name;

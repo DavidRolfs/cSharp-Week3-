@@ -33,7 +33,7 @@ namespace HairSalon
       }
     }
 
-//  GETTERS------
+//  GETTERS
     public int GetId()
     {
       return _id;
@@ -49,7 +49,7 @@ namespace HairSalon
       return _stylistId;
     }
 
-//  SETTERS------
+//  SETTERS
     public void SetClientName(string newName)
     {
       _name = newName;
