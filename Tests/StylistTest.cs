@@ -49,5 +49,15 @@ namespace HairSalon
     {
       Stylist.DeleteAll();
     }
+    [Fact]
+    public void Test_Find_FindsStylistInDatabase()
+    {
+      Stylist testStylist = new Stylist("French");
+      testStylist.Save();
+
+      Stylist foundStylist = Stylist.Find(testStylist.GetId());
+
+      Assert.Equal(testStylist, foundStylist);
+    }
   }
 }
