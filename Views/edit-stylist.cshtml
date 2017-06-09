@@ -1,0 +1,14 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<form action="/stylist/edit/@Model.GetId()" method="post">
+
+
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="stylist-id" type="hidden" value="@Model.GetId()">
+
+  <label for="edit-stylist">Change name</label>
+  <input name="edit-stylist" type="text">
+  <button type="submit">Update</button>
+</form>

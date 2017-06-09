@@ -37,6 +37,8 @@ This application will let the owner manage Stylist and Client information using 
 | User can add clients to specific stylists |
 | User can edit client information |
 | User can delete a client |
+| User can edit Stylist name |
+| User can delete Stylist |
 
 ## Support and contact details
 
