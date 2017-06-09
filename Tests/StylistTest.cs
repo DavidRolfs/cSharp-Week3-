@@ -52,12 +52,27 @@ namespace HairSalon
     [Fact]
     public void Test_Find_FindsStylistInDatabase()
     {
-      Stylist testStylist = new Stylist("French");
+      Stylist testStylist = new Stylist("Sam");
       testStylist.Save();
 
       Stylist foundStylist = Stylist.Find(testStylist.GetId());
 
       Assert.Equal(testStylist, foundStylist);
+    }
+    [Fact]
+    public void Test_GetClients_RetrievesAllClientsWithinStylist()
+    {
+      Stylist testStylist = new Stylist("Sam");
+      testStylist.Save();
+
+      Client firstClient = new Client("Sam", testStylist.GetId());
+      Client secondClient = new Client("Sam", testStylist.GetId());
+
+      firstClient.Save();
+      secondClient.Save();
+
+      List<Client> testClientList = new List<Client>{firstClient, secondClient};
+      List<Client> resultClientList = testStylist.GetClient();
     }
   }
 }

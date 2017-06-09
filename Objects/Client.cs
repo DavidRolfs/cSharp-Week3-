@@ -58,8 +58,10 @@ namespace HairSalon
     {
       _stylistId = newId;
     }
+
+//GetAll
 		public static List<Client> GetAll()
-	 {
+	  {
 		 List<Client> allClient = new List<Client>{};
 
 		 SqlConnection conn = DB.Connection();
@@ -68,29 +70,72 @@ namespace HairSalon
 		 SqlCommand cmd = new SqlCommand("SELECT * FROM clients", conn);
 		 SqlDataReader rdr = cmd.ExecuteReader();
 
-		 while(rdr.Read())
-		 {
-			 int clientId = rdr.GetInt32(0);
-			 string clientName = rdr.GetString(1);
-			 int clientStylistId = rdr.GetInt32(2);
+		while(rdr.Read())
+		{
+			int clientId = rdr.GetInt32(0);
+			string clientName = rdr.GetString(1);
+			int clientStylistId = rdr.GetInt32(2);
 
-			 Client newClient = new Client(clientName, clientStylistId, clientId);
-			 allClient.Add(newClient);
+			Client newClient = new Client(clientName, clientStylistId, clientId);
+			allClient.Add(newClient);
 
-			 Console.WriteLine("New Client: {0}", newClient.GetId());
+		}
 
-		 }
+		if (rdr != null)
+		{
+			rdr.Close();
+		}
+		if (conn != null)
+		{
+			conn.Close();
+		}
+		return allClient;
+		}
 
-		 if (rdr != null)
-		 {
-			 rdr.Close();
-		 }
-		 if (conn != null)
-		 {
-			 conn.Close();
-		 }
-		 return allClient;
-	 }
+//Save Method
+		public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_Id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
+
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@ClientName";
+      nameParameter.Value = this.GetName();
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@ClientStylistId";
+      stylistIdParameter.Value = this.GetStylistId();
+
+      cmd.Parameters.Add(stylistIdParameter);
+      cmd.Parameters.Add(nameParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+
+        this._id = rdr.GetInt32(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+
+		public static void DeleteAll()
+		{
+		 SqlConnection conn = DB.Connection();
+		 conn.Open();
+		 SqlCommand cmd = new SqlCommand("DELETE FROM clients", conn);
+		 cmd.ExecuteNonQuery();
+		 conn.Close();
+		}
 	}
 }
