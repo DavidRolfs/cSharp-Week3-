@@ -7,7 +7,8 @@ using System.Data.SqlClient;
 namespace HairSalon
 {
   [Collection("hair_salon")]
-  public class StylistTest : IDisposable
+  public class StylistTest
+  // : IDisposable
   {
    public StylistTest()
    {
