@@ -61,6 +61,22 @@ namespace HairSalon
     }
 
 
+		[Fact]
+    public void Test_Update_UpdatesCategoryInDatabase()
+    {
+      string name = "Joe";
+      Client testClient = new Client(name, 1);
+      testClient.Save();
+      string newName = "Paul";
+
+      testClient.Update(newName);
+
+      string result = testClient.GetName();
+
+      Assert.Equal(newName, result);
+    }
+
+
 		public void Dispose()
     {
       Client.DeleteAll();
