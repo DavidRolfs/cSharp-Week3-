@@ -55,6 +55,15 @@ namespace HairSalon
         List<Client> allClients = Client.GetAll();
         return View["root.cshtml", allClients];
       };
+			Get["client/delete/{id}"] = parameters => {
+        Client SelectedClient = Client.Find(parameters.id);
+        return View["client-delete.cshtml", SelectedClient];
+      };
+			Delete["client/delete/{id}"] = parameters => {
+        Client SelectedClient = Client.Find(parameters.id);
+        SelectedClient.Delete();
+        return View["root.cshtml"];
+      };
 		}
 	}
 }
