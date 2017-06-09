@@ -1,0 +1,18 @@
+@if (@Model["Client"].Count == 0)
+{
+  <p>No Clients have been added yet!</p>
+}
+else
+{
+  <ol>
+    @foreach (var client in @Model["Client"])
+    {
+      <li>@client.GetName()</li>
+    }
+  </ol>
+}
+
+
+<a href="/stylists/all">View all Stylists</a>
+<br>
+<a href="/stylists/add">Add Stylists</a>

@@ -3,7 +3,7 @@
 <ul>
     @foreach (var stylist in Model)
     {
-      <li>@stylist.GetName()</a>
+      <li><a href="/stylists/@stylist.GetId()">@stylist.GetName()</a></li>
     }
 </ul>
 
