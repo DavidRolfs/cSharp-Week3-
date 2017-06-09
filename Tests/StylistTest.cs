@@ -7,8 +7,7 @@ using System.Data.SqlClient;
 namespace HairSalon
 {
   [Collection("hair_salon")]
-  public class StylistTest
-  // : IDisposable
+  public class StylistTest : IDisposable
   {
    public StylistTest()
    {
@@ -22,6 +21,33 @@ namespace HairSalon
 
       //ASSERT
         Assert.Equal(0, result);
+    }
+    [Fact]
+    public void Test_Equal_ReturnsTrueIfDescriptionsAreTheSame()
+    {
+      //Arrange, Act
+      Stylist firstStylist = new Stylist("Sam");
+      Stylist secondStylist = new Stylist("Sam");
+
+      //ASSERT
+      Assert.Equal(firstStylist, secondStylist);
+    }
+    [Fact]
+    public void Test_Save_SavesToDatabase()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Sam");
+      testStylist.Save();
+      //Act
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{testStylist};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
+    public void Dispose()
+    {
+      Stylist.DeleteAll();
     }
   }
 }
