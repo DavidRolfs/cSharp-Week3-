@@ -7,7 +7,11 @@ else
   <ol>
     @foreach (var client in @Model["Client"])
     {
-      <li>@client.GetName()</li>
+      <li>
+      <a href="/client/@client.GetId()">@client.GetName()</a>
+      <a href="/client/edit/@client.GetId()">Edit</a>
+      <a href="/client/delete/@client.GetId()">Delete</a></li>
+      </li>
     }
   </ol>
 }
